@@ -6,9 +6,23 @@
     export let data;
 
     let filtered_data = data.devices;
+    let admin_id = "";
+    let filteredData = [];
 
     onMount(() => {
         // Format dates to "Month Day" format (e.g., "May 4")
+       
+
+   
+    
+        admin_id = localStorage.getItem("logged_in_admin_id");
+        console.log(filtered_data);
+       // Call filterData when admin_id is available
+        filterData();
+        console.log(admin_id);
+        console.log(filteredData);
+
+
         const formatDate = (dateString) => {
             const date = new Date(dateString);
             const month = date.toLocaleString("default", { month: "short" });
@@ -16,8 +30,9 @@
             return `${month} ${day}`;
         };
 
-        const dates = filtered_data.map((entry) => formatDate(entry.date));
-        const sensorValues = filtered_data.map((entry) => entry.sensor_value);
+        const dates = filteredData.map((entry) => formatDate(entry.date));
+        const sensorValues = filteredData.map((entry) => entry.temprature);
+        console.log(sensorValues);
 
         const ctx = document.querySelector(".ct-chart");
         new Chart(ctx, {
@@ -35,7 +50,16 @@
                 ],
             },
         });
+
+
     });
+    function filterData() {
+        filteredData = filtered_data.filter(
+            (device) => device.selected_admin_id === admin_id
+        );
+        console.log(filteredData);
+    }
+    
 </script>
 
 <section>
@@ -55,11 +79,11 @@
                 </tr>
             </thead>
             <tbody>
-                {#each filtered_data as item}
+                {#each filteredData as item}
                     <tr>
-                        <td>{item.block_name}</td>
-                        <td>{item.room_name}</td>
-                        <td>{item.sensor_value}</td>
+                        <td>{item.selectedBlock}</td>
+                        <td>{item.selectedRoom}</td>
+                        <td>{item.temprature}</td>
                         <td>{item.date}</td>
                         <!-- Assuming you want to display the date of the first sensor data entry -->
                     </tr>
