@@ -41,21 +41,47 @@
         return permission;
     };
 
+    let whatsapp_number = '';
     async function do_subscribe(){
 
-        check();
-        const swRegistration = await registerServiceWorker();
-        console.log('sw reg', swRegistration);
+        if(whatsapp_number.length !== 10){
+            alert('Must be 10 digits');
+            return;
+        }
 
-        const permission = await requestNotificationPermission();
-        console.log('permission', permission);
+        const SERVER_URL = "/api/admin/save_notification_token";
 
-        setTimeout(function () {
-            swRegistration.active.postMessage(JSON.stringify({logged_in_admin_id: localStorage.getItem('logged_in_admin_id')}));
-            localStorage.setItem('registered', '1');
+        let objToSave = {
+            whatsapp_number: whatsapp_number
+        };
+        objToSave.logged_in_admin_id = localStorage.logged_in_admin_id;
 
-            is_subscribed = true;
-        }, 0);
+        console.log("save sub", objToSave);
+
+        const response = await fetch(SERVER_URL, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(objToSave)
+        });
+        is_subscribed = true;
+        localStorage.setItem('registered', '1');
+        return response.json();
+
+        // check();
+        // const swRegistration = await registerServiceWorker();
+        // console.log('sw reg', swRegistration);
+        //
+        // const permission = await requestNotificationPermission();
+        // console.log('permission', permission);
+        //
+        // setTimeout(function () {
+        //     swRegistration.active.postMessage(JSON.stringify({logged_in_admin_id: localStorage.getItem('logged_in_admin_id')}));
+        //     localStorage.setItem('registered', '1');
+        //
+        //     is_subscribed = true;
+        // }, 0);
     };
 
 
@@ -72,6 +98,9 @@
 <div class="subscribe_to_notifications_area">
     <h3>Subscribe to notifications</h3>
     {#if !is_subscribed}
+
+        <input type="tel" bind:value={whatsapp_number} placeholder="enter whatsapp number">
+
         <div>Get realtime notifications on your device on unusual temperature change</div>
         <button on:click={do_subscribe}>Subscribe</button>
         {:else}
@@ -88,6 +117,15 @@
         margin: 10px;
         padding: 10px;
         border: 1px solid #DDD;
+    }
+
+    .subscribe_to_notifications_area input{
+        display: block;
+        padding: 10px;
+    }
+
+    .subscribe_to_notifications_area button{
+        padding: 10px;
     }
 
     .subscribe_to_notifications_area{

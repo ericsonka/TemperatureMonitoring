@@ -41,7 +41,7 @@ self.addEventListener('message', async function(event){
 
   try {
     const applicationServerKey = urlB64ToUint8Array(
-        "BHl8A_08s2P-MZL7HR2jq2jdcW3pCFYXpAzL4ShycHjfEGVokuj94Hua_tTHfv9RY6o1f7NycK0BydbtFAg71dM"
+        "BFBaKZjJ-MkdvvwQ9-8tfjpepRvCXNsG9FIqrddkcxBotBOWWjhp17ScLkKLbYzLAqWRuvcp4anYyPmKx71Fv6A"
     );
     const options = { applicationServerKey, userVisibleOnly: true };
     const subscription = await self.registration.pushManager.subscribe(options);
