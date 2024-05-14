@@ -11,8 +11,22 @@
     let background_image = {
         url: "/admin/logo/260733.jpg",
     };
+
+    async function get_latest_data(){
+        let request = await fetch('/api/admin/get_latest_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        })
+        let result = await request.json();
+        console.log(result); 
+        filteredData = result.data;
+    }
     onMount(() => {
         admin_id = localStorage.getItem("logged_in_admin_id");
+        setInterval(get_latest_data, 10000);
         filterData(); // Call filterData when admin_id is available
     });
 
