@@ -18,6 +18,10 @@
         // console.log(await response.json());
         let result = await response.json();
         console.log(result);
+        if(!result.data.success){
+            alert(result.data.message);
+            return;
+        }
         let admin_id = result.data.user_details[0].admin_id;
         localStorage.setItem("logged_in_admin_id", admin_id);
 
