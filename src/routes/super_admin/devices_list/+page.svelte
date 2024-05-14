@@ -46,12 +46,14 @@
                     Room Name : <span>{device.room_name}</span>
                 </h1>
 
+                <!-- svelte-ignore a11y-no-static-element-interactions -->
                 <!-- <h1>date :<span> {device.date} </span></h1> -->
-                <i
-                    on:click={() =>
-                        handle_delete_device_profile(device.new_device_profile_id)}
-                    class="fa-solid fa-trash delete"
-                ></i>
+        {#if device.new_device_profile_id !== 'DRV_GzJ7cYva5' && device.new_device_profile_id !== 'DRV_AE9Svd2Ze'}
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <i on:click={() => handle_delete_device_profile(device.new_device_profile_id)} class="fa-solid fa-trash delete"></i>
+         {/if}
+                
             </div>
         {/each}
     </div>

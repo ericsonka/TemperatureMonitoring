@@ -142,6 +142,7 @@
             <div class="box">
                 <div class="blocks">
                     <div class="dropdown">
+                        <label for="blockSelect">Block</label>
                         <select
                             name="blockSelect"
                             id="blockSelect"
@@ -157,6 +158,7 @@
 
                 <div class="blocks">
                     <div class="dropdown">
+                        <label for="blockSelect">Room</label>
                         <select
                             name="roomSelect"
                             id="roomSelect"
@@ -171,8 +173,8 @@
                         </select>
                     </div>
                 </div>
-<!-- <pre>{selected_admin}</pre> -->
                 <div class="blocks">
+                    <label for="blockSelect">Admin</label>
                     <div class="dropdown">
                         <select
                             name="roomSelect"

@@ -3,5 +3,5 @@
 
     export async function load({url}) {
         
-        // throw redirect(302, '/super_admin/login');
+        throw redirect(302, '/super_admin/login');
     }
