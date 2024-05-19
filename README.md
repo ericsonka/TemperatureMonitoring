@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
@@ -36,3 +37,7 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+=======
+# TemperatureMonitoring
+Temprature Monitoring is an web app that is used for safety purpose in here i do this project for a godowns
+>>>>>>> origin/main
