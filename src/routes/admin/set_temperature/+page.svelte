@@ -4,6 +4,7 @@
     import { onMount } from "svelte";
     export let data;
     let temperatureData = data.devices;
+    console.log(temperatureData);
     let upperLimit = "";
     let lowerLimit = "";
     let filteredData = [];
@@ -43,6 +44,7 @@
     <Header />
     {#each filteredData as data}
         <div class="container">
+            <!-- <pre>{JSON.stringify(data, null, 2)}</pre> -->
             <div class="input">
                 <label class="label">
                     Upper Limit:
